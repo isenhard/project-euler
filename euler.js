@@ -74,4 +74,38 @@ function euler5() {
 	}
 	return sum;
 }
-console.log(euler5());
+
+function euler6() {
+	var min = 1,
+		max = 100,
+		sum = 0;
+
+	for(var i=min; i<=max; i++) {
+		sum += Math.pow(i, 2);
+	}
+	sum = Math.pow((min + max)*(max/2), 2) - sum;
+
+	return sum;
+}
+console.log(euler6());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
