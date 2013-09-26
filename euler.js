@@ -54,4 +54,24 @@ function euler4() {
 	}
 	return largest;
 }
-console.log(euler4());
+
+function euler5() {
+	var min = 1,
+		max = 20,
+		sum = 1;
+
+	function divisible(n) {
+		for(var i=max; i>=min; i--) {
+			if(n%i != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	while(!divisible(sum)) {
+		sum++;
+	}
+	return sum;
+}
+console.log(euler5());
