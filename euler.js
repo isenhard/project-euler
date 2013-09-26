@@ -7,4 +7,19 @@ function euler1() {
 	}
 	return sum;
 }
-console.log(euler1());
+
+function euler2() {
+	var sum = 0,
+		i = 2,
+		prev = 1;
+	while(i<4e6) {
+		var current = i;
+		if(i%2 == 0) {
+			sum += i;
+		}
+		i = i+prev;
+		prev = current;
+	}
+	return sum;
+}
+console.log(euler2());
