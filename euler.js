@@ -87,9 +87,36 @@ function euler6() {
 
 	return sum;
 }
-console.log(euler6());
 
+function euler7() {
+	var end = 10001,
+		index = 0,
+		num = 0,
+		prime = 0;
 
+	function isPrime(n) {
+		if(n<2) {
+			return false;
+		}
+
+		for (var i=2; i<num; i++) {
+			if(n%i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	while(index != end) {
+		if(isPrime(num)) {
+			index++;
+			prime = num;
+		}
+		num++;
+	}
+	return prime;
+}
+console.log(euler7());
 
 
 
