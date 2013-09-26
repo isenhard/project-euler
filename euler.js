@@ -37,4 +37,21 @@ function euler3(n) {
 	}
 	return false;
 }
-console.log(euler3());
+
+function euler4() {
+	var min = 100,
+		max = 999,
+		largest = 0;
+
+	for(var i=max; i>=min; i--) {
+		for(var j=max; j>=min; j--) {
+			var x = i * j,
+				y = Number(x.toString().split("").reverse().join(""));
+			if(x > largest && x == y) {
+				largest = x;
+			}
+		}
+	}
+	return largest;
+}
+console.log(euler4());
