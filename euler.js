@@ -99,7 +99,7 @@ function euler7() {
 			return false;
 		}
 
-		for (var i=2; i<num; i++) {
+		for (var i=2; i<n; i++) {
 			if(n%i == 0) {
 				return false;
 			}
@@ -151,12 +151,32 @@ function euler9() {
 	}
 	return product;
 }
-console.log(euler9());
 
+function euler10() {
+	var max = 2e6,
+		sum = 0;
 
+	function isPrime(n) {
+		var sqrt = Math.sqrt(n);
 
+		for (var i=2; i<=sqrt; i++) {
+			if(n%i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 
+	for(i=2; i<max; i++) {
+		if(isPrime(i)) {
+			sum += i;
+		}
+	}
 
+	return sum;
+
+}
+console.log(euler10());
 
 
 
