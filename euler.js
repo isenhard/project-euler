@@ -133,10 +133,25 @@ function euler8() {
 			highest = sum;
 		}
 	}
-
 	return highest;
 }
-console.log(euler8());
+
+function euler9() {
+	var sum = 1000,
+		product = 0;
+
+	for(var a=1; a<sum; a++) {
+		for(var b=a+1; b<sum; b++) {
+			var ab = Math.sqrt(Math.pow(a,2) + Math.pow(b,2)),
+				c = sum - a - b;
+			if(c == ab) {
+				product = a*b*c;
+			}
+		}
+	}
+	return product;
+}
+console.log(euler9());
 
 
 
