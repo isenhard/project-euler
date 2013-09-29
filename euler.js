@@ -233,9 +233,49 @@ function euler11() {
 
 	return highest;
 }
-console.log(euler11());
 
+function euler12() {
+	var max = 500,
+		i = 1;
 
+	function triangleNum(n) {
+		var sum = 0;
 
+		for(var i=0; i<=n; i++) {
+			sum += i;
+		}
 
+		return sum;
+	}
 
+	function divisors(n) {
+		var list = [],
+			i = 1,
+			max = n; // ?
+
+		if(n == 1) {
+			return 1;
+		}
+
+		while(i <= max) {
+			if(n%i == 0) {
+				list.push(i);
+
+				if(i != n/i) {
+					list.push(n/i);
+                }
+                max = n/i;
+			}
+			i++;
+		}
+
+		return list.length;
+	}
+
+	while(divisors(triangleNum(i)) < max) {
+		i++;
+	}
+
+	return triangleNum(i);
+}
+console.log(euler12());
