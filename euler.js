@@ -293,4 +293,30 @@ function euler13() {
 	sum = sum.toString().slice(0,10)*10e8;
 	return sum;
 }
-console.log(euler13());
+
+function euler14() {
+	var max = 1e6,
+		num = 0,
+		streak = 0,
+		longest = 0;
+
+	for(var i=1; i<max; i++) {
+		streak = 0;
+		var n = i;
+		while(n > 1) {
+			if(n%2 == 0) {
+				n = n/2;
+			} else {
+				n = 3*n+1;
+			}
+			streak++;
+		}
+		if(streak > longest) {
+			longest = streak;
+			num = i;
+		}
+	}
+
+	return num;
+}
+console.log(euler14());
