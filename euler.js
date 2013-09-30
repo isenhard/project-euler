@@ -319,4 +319,21 @@ function euler14() {
 
 	return num;
 }
-console.log(euler14());
+
+function euler15() {
+	var size = 20,
+		grid = [];
+
+	for(var i=0; i<size; i++) {
+		grid[i,size] = 1;
+		grid[size,i] = 1;
+	}
+	for(var i=1; i<=size; i++) {
+		for(var j=1; j<=size; j++) {
+			grid[i,j] = grid[i-1,j] + grid[i,j-1];
+		}
+	}
+
+	return grid[size,size];
+}
+console.log(euler15());
