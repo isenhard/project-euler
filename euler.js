@@ -367,4 +367,57 @@ function euler16() {
 
 	return sum;
 }
-console.log(euler16());
+
+function euler17() {
+	var list = {1:3, 2:3, 3:5, 4:4, 5:4, 6:3, 7:5, 8:5, 9:4, 10:3, 11:6, 12:6, 13:8, 14:8, 15:7, 16:7, 17:9, 18:8, 19:8, 20:6, 30:6, 40:5, 50:5, 60:5, 70:7, 80:6, 90:6, 100:7, 1000:8},
+		max = 1000,
+		sum = 0;
+
+	for(var i=1; i<=max; i++) {
+		var str = i.toString();
+		
+		if(i < 10) {
+			sum += list[i];
+		}
+		if(i >= 10 && i < 100) {
+			var n1 = str.substring(0,1),
+				n2 = str.substring(1,2);
+
+			if(i < 20) {
+				sum += list[i];
+			} else {
+				if(str.substring(1,2) == "0") {
+					sum += list[i];
+				} else {
+					sum += list[n1 + "0"] + list[n2];
+				}
+			}
+		}
+		if(i >= 100 && i < 1000) {
+			var n1 = str.substring(0,1),
+				n2 = str.substring(1,2),
+				n3 = str.substring(2,3),
+				and = 3;
+
+			if(i == 100) {
+				sum += list[1] + list[100];
+			} else if(n2 == "0" && n3 == "0") {
+				sum += list[n1] + list[100];
+			} else if(n3 == "0") {
+				sum += and + list[n1]  + list[n2 + "0"] + list[100];
+			} else if(n2 == "0") {
+				sum += and + list[n1] + list[n3] + list[100];
+			} else if(n2 == "1" && n3 != "0") {
+				sum += and + list[n1] + list[n2 + n3] + list[100];
+			} else {
+				sum += and + list[n1] + list[n2 + "0"] + list[n3] + list[100];
+			}
+		}
+		if(i == 1000) {
+			sum += list[1] + list[1000];
+		}
+	}
+
+	return sum;
+}
+console.log(euler17());
