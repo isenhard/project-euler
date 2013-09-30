@@ -336,4 +336,35 @@ function euler15() {
 
 	return grid[size,size];
 }
-console.log(euler15());
+
+function euler16() {
+	var exponent = 1000,
+		list = [1],
+		sum = 0;
+
+	for(var i=0; i<exponent; i++) {
+		var overflow = 0,
+			count = list.length + 1;
+
+		for(var j=0; j<count; j++) {
+			var digit = list[j] || 0;
+
+			digit = 2 * digit + overflow;
+
+			if(digit > 9) {
+				digit -= 10;
+				overflow = 1;
+			} else {
+				overflow = 0;
+			}
+			list[j] = digit;
+		}
+	}
+
+	for(var i=0; i<exponent; i++) {
+		sum += list[i];
+	}
+
+	return sum;
+}
+console.log(euler16());
