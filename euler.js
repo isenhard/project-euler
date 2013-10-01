@@ -1,3 +1,5 @@
+var start = +new Date();
+
 function euler1() {
 	var sum = 0;
 	for(var i=0; i<1000; i++) {
@@ -442,4 +444,45 @@ function euler18() {
 
 	return grid[0][0];
 }
-console.log(euler18());
+
+function euler19() {
+	var month = {1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31},
+		sundays = 0,
+		days = 2; // Since 1901 starts on a Tuesday
+
+	for(var y=1901; y<2001; y++) {
+
+		// is it a leap year?
+		if(y%400 == 0) {
+			month[2] = 29;
+		} else if(y%100 == 0) {
+			month[2] = 28;
+		} else if(y%4 == 0) {
+			month[2] = 29;
+		} else {
+			month[2] = 28;
+		}
+
+		for(var m=1; m<13; m++) {
+			days += month[m];
+			if(days%7 == 0) {
+				sundays++;
+			}
+		}
+	}
+
+	/*
+	// Shorter and more dynamic, but 100x slower.
+	for(var y=1901; y<2001; y++){
+		for(var m=1; m<13; m++) {
+			var d = new Date(y,m,1);
+			if(d.getDay() == 0) {
+				sundays++;
+			}
+		}
+	}
+	*/
+
+	return sundays;
+}
+console.log("Result: " + euler19() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
