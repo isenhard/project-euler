@@ -485,4 +485,39 @@ function euler19() {
 
 	return sundays;
 }
-console.log("Result: " + euler19() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+
+function euler20() {
+	var factorial = 100,
+		list = [1],
+		sum = 0;
+
+	// add each digit of the factorial to a list
+	for(var i=1; i<=factorial; i++) {
+		var overflow = 0,
+			count = list.length+1;
+
+		for(var j=0; j<=count; j++) {
+			var num = list[j] || 0;
+
+			num = i * num + overflow;
+
+			// if number is over 9, store the overflow and remove it from the number.
+			// example: num = 346; then -> overflow = 34 and num = 6;
+			if(num > 9) {
+				overflow = parseInt(num.toString().slice(0,-1));
+				num = parseInt(num.toString().slice(-1));
+			} else {
+				overflow = 0;
+			}
+			list[j] = num;
+		}
+	}
+
+	// sum all the numbers in the list together.
+	for(var i=0; i<list.length; i++) {
+		sum += list[i];
+	}
+
+	return sum;
+}
+console.log("Result: " + euler20() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
