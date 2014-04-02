@@ -518,4 +518,72 @@ function euler20() {
 
 	return sum;
 }
-console.log("Result: " + euler13() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+
+function euler21() {
+	var lim = 10000,
+		amicableNums = [],
+        b;
+
+    function proper_divisors(n) {
+        var list = [],
+            max = n;
+
+        for (var i = 0; i <= max; i++) {
+            // we do not want to add same nuber multiple times
+            if (list.indexOf(i) !== -1) continue;
+
+            // check if number is an divisor
+            if(n % i == 0 && i != n) {
+                // add divisor to our list
+                list.push(i);
+
+                // These 4 following lines of code reduced my completion time from 25s to 3s
+                if(i != n / i && n != n / i) {
+                    // add divisor to our list
+                    list.push(n/i);
+                }
+                // reduce numbers we have to iterate over
+                max = n/i;
+            }
+        }
+
+        // return list with divisors
+        return list;
+    }
+
+    function d(n) {
+        // if number is 1, it will only have 1 as an divisor
+        if(n === 1) return 1;
+
+        // get divisors
+        var divs = proper_divisors(n);
+
+        // add together our list of divisors and return the result
+        return divs.reduce(function(a, b) {
+            return a + b;
+        });
+    }
+
+    for (var a = 1; a < lim; a++) {
+        // if number already exists in our list, do not try it again
+        if (amicableNums.indexOf(a) !== -1) continue;
+
+        // set b
+        b = d(a);
+
+        // check if numbers are an amicable pair
+        if (a == d(b) && b == d(a) && a != b) {
+            // add amicable numbers to our list
+            amicableNums.push(a, b);
+        }
+
+    }
+
+    // add together all our amicable numbers and return the result
+    return amicableNums.reduce(function(a, b) {
+        return a + b;
+    });
+}
+
+
+console.log("Result: " + euler21() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
