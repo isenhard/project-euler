@@ -585,5 +585,86 @@ function euler21() {
     });
 }
 
+function euler22() {
+    var file = "22_names.txt";
 
-console.log("Result: " + euler21() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+    (function readFile(file){
+        var raw;
+        var xhr = new XMLHttpRequest;
+
+        xhr.onload = function() {
+            stringToArray(this.response);
+        };
+
+        xhr.open("GET", file);
+        xhr.send();
+    })(file);
+
+    function stringToArray(raw) {
+        var array = JSON.parse("[" + raw + "]");
+        toAlphValues(array);
+    }
+
+    function mergeSort(array) {
+        if (array.length <= 1) {
+            return array;
+        }
+
+        var middle = Math.floor(array.length / 2);
+        var left   = array.slice(0, middle);
+        var right  = array.slice(middle);
+
+        return merge(mergeSort(left), mergeSort(right));
+    }
+
+    function merge(left, right) {
+        var result = [];
+     
+        while (left.length && right.length) {
+            if (left[0] < right[0]) {
+                result.push(left.shift());
+            } else {
+                result.push(right.shift());
+            }
+        }
+     
+        while (left.length) {
+            result.push(left.shift());
+        }
+     
+        while (right.length) {
+            result.push(right.shift());
+        }
+     
+        return result;
+    }
+
+    function toAlphValues(array) {
+        var sorted = mergeSort(array);
+        var val = [];
+        var total;
+        var result = 0;
+
+        for (var i = 0; i < sorted.length; i++) {
+            val = [];
+            total = 0;
+
+            for (var j = 0; j < sorted[i].length; j++) {
+                val.push(sorted[i].charCodeAt(j) - 64);
+            }
+
+            for (var j = 0; j < val.length; j++) {
+                total += val[j];
+            }
+
+            result = result + (total * (i + 1));
+        }
+
+        console.log("Result:", result);
+    }
+
+    return "Look below, time not correct for this one";
+}
+
+
+console.log("Result: " + euler22() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
