@@ -696,7 +696,6 @@ function euler22_alt() {
 function euler23() {
     var LIMIT = 28123,
         abundantNumbers = [],
-        positiveInts = [],
         listofsums = [];
 
     function isAbundant(n) {
