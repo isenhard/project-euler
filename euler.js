@@ -737,4 +737,40 @@ function euler23() {
     return sum;
 }
 
-console.log("Result: " + euler23() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+function euler24() {
+    var numberOfPermutations = Math.pow(10, 6);
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var result = [];
+    var start = 0;
+
+    function factorial(n) {
+        var sum = 1;
+
+        for (var i = 2; i <= n; i++) {
+            sum *= i;
+        }
+
+        return sum;
+    }
+
+    for (var i = numbers.length - 1; i > 0; i--) {
+        var factor = factorial(i);
+
+        var j = 0;
+        while (numbers.length) {
+            if (start + (j+1) * factor >= numberOfPermutations) {
+                start += j * factor;
+                result += numbers[j];
+                numbers.splice(j, 1);
+                break;
+            }
+            j++;
+        }
+    }
+
+    result += numbers[0];
+
+    return result;
+}
+
+console.log("Result: " + euler24() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
