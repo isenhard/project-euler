@@ -773,4 +773,10 @@ function euler24() {
     return result;
 }
 
-console.log("Result: " + euler24() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+function euler25() {
+    var phi = 1.618033988749894848204586834;
+
+    return Math.round((Math.log(10)*999+Math.log(5)/2)/Math.log(phi));
+}
+
+console.log("Result: " + euler25() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
