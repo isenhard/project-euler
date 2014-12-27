@@ -813,4 +813,41 @@ function euler26() {
     return maxN;
 }
 
-console.log("Result: " + euler26() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+function euler27() {
+    var maxA = 1000,
+        maxB = 1000,
+        result = {'n': 0, 'a': 0, 'b': 0};
+
+    function isPrime(n) {
+        var sqrt = Math.sqrt(n);
+
+        for (var i=2; i<=sqrt; i++) {
+            if(n%i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    for (var a = -maxA; a <= maxA; a++) {
+        for (var b = -maxB; b <= maxB; b++) {
+            var n = 0;
+
+            while (isPrime(Math.abs(n*n + a*n + b))) {
+                n++;
+            }
+
+            if (result.n < n) {
+                result = {
+                    'n': n,
+                    'a': a,
+                    'b': b
+                }
+            }
+        }
+    }
+
+    return result.a * result.b;
+}
+
+console.log("Result: " + euler27() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
