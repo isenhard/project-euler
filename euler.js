@@ -779,4 +779,38 @@ function euler25() {
     return Math.round((Math.log(10)*999+Math.log(5)/2)/Math.log(phi));
 }
 
-console.log("Result: " + euler25() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+function euler26() {
+    var maxN = 0;
+    var maxVal = 0;
+
+    function decimals(n) {
+        var remainder = 1 % n;
+        var seen = {};
+        var digits = [];
+
+        while (true) {
+            remainder *= 10;
+            digits.push(Math.floor(remainder / n));
+            remainder = remainder % n;
+
+            if (seen[remainder]) {
+              return digits.splice(seen[remainder]).length;
+            }
+            else {
+              seen[remainder] = digits.length;
+            }
+        }
+    }
+
+    for (var i = 1; i < 1000; i++) {
+        var val = decimals(i);
+        if (val > maxVal) {
+            maxVal = val;
+            maxN = i;
+        }
+    }
+
+    return maxN;
+}
+
+console.log("Result: " + euler26() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
