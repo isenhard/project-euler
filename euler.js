@@ -776,7 +776,7 @@ function euler24() {
 function euler25() {
     var phi = 1.618033988749894848204586834;
 
-    return Math.round((Math.log(10)*999+Math.log(5)/2)/Math.log(phi));
+    return Math.round((Math.log(10) * 999 + Math.log(5) / 2) / Math.log(phi));
 }
 
 function euler26() {
@@ -850,4 +850,29 @@ function euler27() {
     return result.a * result.b;
 }
 
-console.log("Result: " + euler27() + "\nTotal Time: " + (+new Date() - start)/1000 + "sec");
+function euler28() {
+    var spiralMaxSize = 1001,
+        spiralCurrent = 1,
+        i = 1,
+        diagonalSum = 0;
+
+    while (true) {
+        if (spiralCurrent == 1 || i % (spiralCurrent-1) === 1) {
+            diagonalSum += i;
+        }
+
+        if (i === spiralCurrent * spiralCurrent) {
+            if (spiralCurrent >= spiralMaxSize) {
+                break;
+            }
+
+            spiralCurrent += 2;            
+        }
+
+        i++;
+    }
+
+    return diagonalSum;
+}
+
+console.log("Result: " + euler28() + "\nTotal Time: " + (new Date() - start) + " ms");
