@@ -1,4 +1,5 @@
-var start = +new Date();
+var start  = +new Date();
+var bigint = require('./BigInteger');
 
 function euler1() {
     var sum = 0;
@@ -875,4 +876,25 @@ function euler28() {
     return diagonalSum;
 }
 
-console.log("Result: " + euler28() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler29() {
+    // using array and checking with indexOf before push uses ~950ms
+    // where an object with true value only uses ~265ms
+
+    var minA = 2,
+        maxA = 100,
+        minB = 2,
+        maxB = 100,
+        sequence = {},
+        val;
+
+    for (var a = minA; a <= maxA; a++) {
+        for (var b = minB; b <= maxB; b++) {
+            val = bigint(a).pow(b).toString();
+            sequence[val] = true;
+        }
+    }
+
+    return Object.keys(sequence).length;
+}
+
+console.log("Result: " + euler29() + "\nTotal Time: " + (new Date() - start) + " ms");
