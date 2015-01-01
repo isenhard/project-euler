@@ -897,4 +897,30 @@ function euler29() {
     return Object.keys(sequence).length;
 }
 
-console.log("Result: " + euler29() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler30() {
+    var sum = 0;
+    var num, numSum;
+
+    for (var a = 0; a <= 9; a++) {
+        for (var b = 0; b <= 9; b++) {
+            for (var c = 0; c <= 9; c++) {
+                for (var d = 0; d <= 9; d++) {
+                    for (var e = 0; e <= 9; e++) {
+                        for (var f = 0; f <= 9; f++) {
+                            num = a*100000 + b*10000 + c*1000 + d*100 + e*10 + f;
+                            numSum = Math.pow(a, 5) + Math.pow(b, 5) + Math.pow(c, 5) + Math.pow(d, 5) + Math.pow(e, 5) + Math.pow(f, 5);
+
+                            if (num > 1 && num === numSum) {
+                                sum += num;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return sum;
+}
+
+console.log("Result: " + euler30() + "\nTotal Time: " + (new Date() - start) + " ms");
