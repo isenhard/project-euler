@@ -923,4 +923,28 @@ function euler30() {
     return sum;
 }
 
-console.log("Result: " + euler30() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler31() {
+    var target = 200,
+        ways = 0;
+
+    for (var a = 0; a <= target; a += 200) {
+        for (var b = a; b <= target; b += 100) {
+            for (var c = b; c <= target; c += 50) {
+                for (var d = c; d <= target; d += 20) {
+                    for (var e = d; e <= target; e += 10) {
+                        for (var f = e; f <= target; f += 5) {
+                            for (var g = f; g <= target; g += 2) {
+                                // fill with ones up to 200
+                                ways++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return ways;
+}
+
+console.log("Result: " + euler31() + "\nTotal Time: " + (new Date() - start) + " ms");
