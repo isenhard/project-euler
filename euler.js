@@ -947,4 +947,48 @@ function euler31() {
     return ways;
 }
 
-console.log("Result: " + euler31() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler32() {
+    var sum = 0,
+        products = [],
+        product, stringed;
+
+    function isPandigital(n) {
+        var string = n.toString().split(''),
+            digits = [];
+
+        if (string.indexOf('0') !== -1) {
+            return false;
+        }
+
+        for (var i = 0; i < string.length; i++) {
+            var digit = string[i];
+            if (digits.indexOf(digit) === -1) {
+                digits.push(digit);
+            }
+        }
+
+        return digits.length === string.length;
+    }
+
+    for (var i = 2; i < 100; i++) {
+        var nBegin = (i > 9) ? 123 : 1234,
+            nEnd = 10000 / i;
+
+        for (var n = nBegin; n < nEnd; n++) {
+            product = i * n;
+            stringed = product.toString() + n.toString() + i.toString();
+
+            if (isPandigital(stringed) && products.indexOf(product) === -1) {
+                products.push(product);
+            }
+        }
+    }
+
+    for (var i = 0; i < products.length; i++) {
+        sum += products[i];
+    }
+
+    return sum;
+}
+
+console.log("Result: " + euler32() + "\nTotal Time: " + (new Date() - start) + " ms");
