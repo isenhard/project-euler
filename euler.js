@@ -991,4 +991,49 @@ function euler32() {
     return sum;
 }
 
-console.log("Result: " + euler32() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler33() {
+    var numeratorProduct = 1,
+        denominatorProduct = 1;
+
+    function gcd(a, b) {
+        var x = (a > b) ? a : b,
+            y = (a > b) ? b : a,
+            temp;
+
+        while (x % y != 0) {
+            temp = x;
+            x = y;
+            y = temp % x;
+        }
+
+        return y;
+    }
+
+    for (var n = 10; n < 100; n++) {
+        for (var d = n + 1; d < 100; d++) {
+            var result = n / d,
+                nArray = n.toString().split(''),
+                dArray = d.toString().split(''),
+                n0 = parseInt(nArray[0]),
+                n1 = parseInt(nArray[1]),
+                d0 = parseInt(dArray[0]),
+                d1 = parseInt(dArray[1]);
+
+            if ((result === n1 / d0 || result === n0 / d1) &&
+                (
+                    (n0 !== n1 && n0 !== d1 && n1 === d0) ||
+                    (n0 !== n1 && n0 === d1 && n1 !== d0)
+                ))
+            {
+                numeratorProduct *= n;
+                denominatorProduct *= d;
+            }
+        }
+    }
+
+    denominatorProduct /= gcd(numeratorProduct, denominatorProduct);
+
+    return denominatorProduct;
+}
+
+console.log("Result: " + euler33() + "\nTotal Time: " + (new Date() - start) + " ms");
