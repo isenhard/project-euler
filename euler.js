@@ -1036,4 +1036,37 @@ function euler33() {
     return denominatorProduct;
 }
 
-console.log("Result: " + euler33() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler34() {
+    var result = 0,
+        start = 3,
+        end = factorial(9) * 7;
+
+    function factorial(n) {
+        var sum = 1;
+
+        for (var i = 2; i <= n; i++) {
+            sum *= i;
+        }
+
+        return sum;
+    }
+
+    for (var i = start; i <= end; i++) {
+        var sum = 0,
+            n = i;
+
+        while (n > 0) {
+            var digit = n % 10;
+            n = parseInt(n / 10);
+            sum += factorial(digit);
+        }
+
+        if (sum === i) {
+            result += i;
+        }
+    }
+
+    return result;
+}
+
+console.log("Result: " + euler34() + "\nTotal Time: " + (new Date() - start) + " ms");
