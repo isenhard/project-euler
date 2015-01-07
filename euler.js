@@ -1069,4 +1069,62 @@ function euler34() {
     return result;
 }
 
-console.log("Result: " + euler34() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler35() {
+    var limit = 1000000,
+        primes = eratosthenes(limit);
+
+    // sieve of Eratosthenes
+    function eratosthenes(n) {
+        var list = [],
+            limit = Math.sqrt(n),
+            primes = [];
+
+        for (var i = 0; i < n; i++) {
+            list.push(true);
+        }
+
+        for (var i = 2; i <= limit; i++) {
+            if (list[i]) {
+                for (var j = i * i; j < n; j += i) {
+                    list[j] = false;
+                }
+            }
+        }
+
+        for (var i = 2; i < n; i++) {
+            if (list[i]) {
+                primes.push(i);
+            }
+        }
+
+        return primes;
+    }
+
+    function isCircularPrime(n) {
+        var nArray = n.toString().split('');
+
+        for (var i = 0; i < nArray.length; i++) {
+            nArray.push(nArray[0]);
+            nArray.splice(0, 1);
+
+            if (primes.indexOf(parseInt(nArray.join(''))) === -1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    for (var i = 0; i < primes.length; i++) {
+        var prime = primes[i];
+
+        if (!isCircularPrime(prime)) {
+            primes.splice(i, 1);
+            i--;
+        }
+    }
+
+    return primes.length;
+}
+
+console.log("Result: " + euler35() + "\nTotal Time: " + (new Date() - start) + " ms");
