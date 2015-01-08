@@ -1127,4 +1127,25 @@ function euler35() {
     return primes.length;
 }
 
-console.log("Result: " + euler35() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler36() {
+    var limit = 1000000,
+        palindromes = 0;
+
+    function reverseString(s) {
+        return s.split('').reverse().join('');
+    }
+
+    for (var i = 1; i < limit; i++) {
+        var string = i.toString();
+        if (string == reverseString(string)) {
+            var base2 = i.toString(2);
+            if (base2 == reverseString(base2)) {
+                palindromes += i;
+            }
+        }
+    }
+
+    return palindromes;
+}
+
+console.log("Result: " + euler36() + "\nTotal Time: " + (new Date() - start) + " ms");
