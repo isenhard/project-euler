@@ -1148,4 +1148,71 @@ function euler36() {
     return palindromes;
 }
 
-console.log("Result: " + euler36() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler37() {
+    var limit = 1000000,
+        primes = eratosthenes(limit),
+        truncatablePrimes = 0,
+        sum = 0;
+
+    // sieve of Eratosthenes
+    function eratosthenes(n) {
+        var list = [],
+            limit = Math.sqrt(n),
+            primes = [];
+
+        for (var i = 0; i < n; i++) {
+            list.push(true);
+        }
+
+        for (var i = 2; i <= limit; i++) {
+            if (list[i]) {
+                for (var j = i * i; j < n; j += i) {
+                    list[j] = false;
+                }
+            }
+        }
+
+        for (var i = 2; i < n; i++) {
+            if (list[i]) {
+                primes.push(i);
+            }
+        }
+
+        return primes;
+    }
+
+    for (var i = 0; i < primes.length; i++) {
+        var array = primes[i].toString().split('');
+        
+        if (array.length === 1) {
+            continue;
+        }
+
+        var isTruncatable = true,
+            primeArrayLR = array.slice(0),
+            primeArrayRL = array.slice(0);
+        for (var j = 0; j < array.length - 1; j++) {
+            primeArrayLR.splice(0, 1);
+            primeArrayRL.splice(primeArrayRL.length - 1, 1);
+
+            if (primes.indexOf(parseInt(primeArrayLR.join(''))) === -1 ||
+                primes.indexOf(parseInt(primeArrayRL.join(''))) === -1) {
+                isTruncatable = false;
+                break;
+            }
+        }
+
+        if (isTruncatable) {
+            truncatablePrimes++;
+            sum += primes[i];
+
+            if (truncatablePrimes === 11) {
+                break;
+            }
+        }
+    }
+
+    return sum;
+}
+
+console.log("Result: " + euler37() + "\nTotal Time: " + (new Date() - start) + " ms");
