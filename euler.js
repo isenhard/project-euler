@@ -1215,4 +1215,36 @@ function euler37() {
     return sum;
 }
 
-console.log("Result: " + euler37() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler38() {
+    var largest = '';
+
+    function isPandigital(n) {
+        var string = n.toString().split(''),
+            digits = [];
+
+        if (string.indexOf('0') !== -1) {
+            return false;
+        }
+
+        for (var i = 0; i < string.length; i++) {
+            var digit = string[i];
+            if (digits.indexOf(digit) === -1) {
+                digits.push(digit);
+            }
+        }
+
+        return digits.length === string.length;
+    }
+
+    for (var i = 9876; i > 0; i--) {
+        largest = '' + i + (i * 2);
+
+        if (isPandigital(largest)) {
+            break;
+        }
+    }
+
+    return largest;
+}
+
+console.log("Result: " + euler38() + "\nTotal Time: " + (new Date() - start) + " ms");
