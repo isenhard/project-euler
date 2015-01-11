@@ -1247,4 +1247,32 @@ function euler38() {
     return largest;
 }
 
-console.log("Result: " + euler38() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler39() {
+    var pMax = 0,
+        pSols = 0;
+
+    for (var p = 1; p <= 1000; p++) {
+        var a = 1,
+            b = 2,
+            sols = 0;
+
+        while (2*a < p && b > a) {
+            b = p * ((p - 2*a) / (2 * (p - a)));
+
+            if (b % 1 === 0) {
+                sols++;
+            }
+
+            a++;
+        }
+
+        if (sols > pSols) {
+            pMax = p;
+            pSols = sols;
+        }
+    }
+
+    return pMax;
+}
+
+console.log("Result: " + euler39() + "\nTotal Time: " + (new Date() - start) + " ms");
