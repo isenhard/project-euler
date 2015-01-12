@@ -1275,4 +1275,25 @@ function euler39() {
     return pMax;
 }
 
-console.log("Result: " + euler39() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler40() {
+    var product = 1;
+
+    function D(n) {
+        var i = 1;
+
+        while (n > i.toString().length) {
+            n -= i.toString().length;
+            i++;
+        }
+
+        return i.toString()[n-1];
+    }
+
+    for (var n = 1; n <= 1000000; n *= 10) {
+        product *= D(n);
+    }
+
+    return product;
+}
+
+console.log("Result: " + euler40() + "\nTotal Time: " + (new Date() - start) + " ms");
