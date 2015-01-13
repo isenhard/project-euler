@@ -1296,4 +1296,82 @@ function euler40() {
     return product;
 }
 
-console.log("Result: " + euler40() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler41() {
+    var numbers = [1,2,3,4,5,6,7,8,9],
+        primes = [],
+        prime = 0;
+
+    function isPandigital(n) {
+        var string = n.toString().split(''),
+            digits = [];
+
+        if (string.indexOf('0') !== -1) {
+            return false;
+        }
+
+        for (var i = 0; i < string.length; i++) {
+            var digit = string[i];
+            if (digits.indexOf(digit) === -1 && digit <= string.length) {
+                digits.push(digit);
+            }
+        }
+
+        return digits.length === string.length;
+    }
+
+    // sieve of Eratosthenes
+    function eratosthenes(n) {
+        var list = [],
+            limit = Math.sqrt(n),
+            primes = [];
+
+        for (var i = 0; i < n; i++) {
+            list.push(true);
+        }
+
+        for (var i = 2; i <= limit; i++) {
+            if (list[i]) {
+                for (var j = i * i; j < n; j += i) {
+                    list[j] = false;
+                }
+            }
+        }
+
+        for (var i = 2; i < n; i++) {
+            if (list[i]) {
+                primes.push(i);
+            }
+        }
+
+        return primes;
+    }
+
+    // find biggest pandigital number not divisible by 3
+    while (numbers.length > 1) {
+        var sum = 0;
+
+        for (var i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+
+        if ((sum / 3) % 1 != 0) {
+            var num = parseInt(numbers.reverse().join(''));
+            primes = eratosthenes(num);
+            break;
+        }
+
+        numbers = numbers.slice(0, numbers.length-1);
+    }
+
+    // find the biggest pandigital prime
+    for (var i = primes.length - 1; i >= 0; i--) {
+        if (isPandigital(primes[i])) {
+            prime = primes[i];
+            break;
+        }
+    }
+
+    return prime;
+}
+
+console.log("Result: " + euler41() + "\nTotal Time: " + (new Date() - start) + " ms");
