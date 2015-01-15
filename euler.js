@@ -1420,4 +1420,57 @@ function euler42() {
     return triangleWords;
 }
 
-console.log("Result: " + euler42() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler43() {
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        divisors = [2, 3, 5, 7, 11, 13, 17],
+        perms = 3628800, // 10!
+        result = 0;
+
+    function swap(i, j) {
+        var temp = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = temp;
+    }
+
+    function hasProperty(n) {
+        for (var i = 1; i <= divisors.length; i++) {
+            var num = (100 * n[i]) + (10 * n[i + 1]) + n[i + 2];
+
+            if (num % divisors[i - 1] !== 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    for (var i = 0; i < perms; i++) {
+        var x, y;
+
+        for (var j = 0; j < numbers.length - 1; j++) {
+            if (numbers[j] < numbers[j + 1]) {
+                x = j;
+            }
+        }
+
+        if (x >= 0) {
+            for (var j = 0; j < numbers.length; j++) {
+                if (numbers[x] < numbers[j]) {
+                    y = j;
+                }
+            }
+
+            swap(x, y);
+
+            numbers = numbers.slice(0, x + 1).concat(numbers.slice(x + 1).reverse());
+        }
+
+        if (hasProperty(numbers)) {
+            result += parseInt(numbers.join(''));
+        }
+    }
+
+    return result;
+}
+
+console.log("Result: " + euler43() + "\nTotal Time: " + (new Date() - start) + " ms");
