@@ -1473,4 +1473,36 @@ function euler43() {
     return result;
 }
 
-console.log("Result: " + euler43() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler44() {
+    var result = 0,
+        i = 1;
+
+    function pentagonalNumber(n) {
+        return n * (3 * n -1) / 2;
+    }
+
+    function isPentagonalNumber(n) {
+        var N = (Math.sqrt(24 * n + 1) + 1) / 6;
+        return N % 1 === 0;
+    }
+
+    while (!result) {
+        var x = pentagonalNumber(i);
+
+        for (var j = 1; j < i; j++) {
+            var y = pentagonalNumber(j);
+
+            if (isPentagonalNumber(x + y)) {
+                if (isPentagonalNumber(x - y)) {
+                    result = x - y;
+                }
+            }
+        }
+
+        i++;
+    }
+
+    return result;
+}
+
+console.log("Result: " + euler44() + "\nTotal Time: " + (new Date() - start) + " ms");
