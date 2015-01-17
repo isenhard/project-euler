@@ -1505,4 +1505,37 @@ function euler44() {
     return result;
 }
 
-console.log("Result: " + euler44() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler45() {
+    var result,
+        hn = 144;
+
+    function hexagonalNumber(n) {
+        return n * (2 * n - 1);
+    }
+
+    function isPentagonalNumber(n) {
+        var N = (Math.sqrt(24 * n + 1) + 1) / 6;
+        return N % 1 === 0;
+    }
+
+    function isTriangularNumber(n) {
+        var N = (Math.sqrt(8 * n + 1) - 1) / 2;
+        return N % 1 === 0;
+    }
+
+    while (!result) {
+        var hexNum = hexagonalNumber(hn);
+
+        if (isPentagonalNumber(hexNum)) {
+            if (isTriangularNumber(hexNum)) {
+                result = hexNum;
+            }
+        }
+        hn++;
+    }
+
+    return result;
+
+}
+
+console.log("Result: " + euler45() + "\nTotal Time: " + (new Date() - start) + " ms");
