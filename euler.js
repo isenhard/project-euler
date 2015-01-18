@@ -1535,7 +1535,54 @@ function euler45() {
     }
 
     return result;
-
 }
 
-console.log("Result: " + euler45() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler46() {
+    var i = 33,
+        result;
+
+    function isPrime(n) {
+        var sqrt = Math.sqrt(n);
+
+        for (var i=2; i<=sqrt; i++) {
+            if(n%i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function conjecture(n) {
+        var twiceSquare = 2, // 2 * Math.pow(1, 2)
+            j = 1;
+
+        while (twiceSquare < n) {
+            if (isPrime(n - twiceSquare)) {
+                return true;
+            }
+
+            j++;
+            twiceSquare = 2 * Math.pow(j, 2);
+        }
+
+        return false;
+    }
+
+    while (!result) {
+        if (isPrime(i)) {
+            i += 2;
+            continue;
+        }
+
+        if (!conjecture(i)) {
+            result = i;
+        }
+
+        i += 2;
+    }
+
+    return result;
+}
+
+console.log("Result: " + euler46() + "\nTotal Time: " + (new Date() - start) + " ms");
