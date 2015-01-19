@@ -1585,4 +1585,94 @@ function euler46() {
     return result;
 }
 
-console.log("Result: " + euler46() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler47() {
+    var consecutive = [],
+        first = 0,
+        i = 2;
+
+    function isPrime(n) {
+        var sqrt = Math.sqrt(n);
+
+        if (n % 1) return false;
+
+        for (var i=2; i<=sqrt; i++) {
+            if(n%i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function primeFactors(n) {
+        var factors = {},
+            x = n,
+            i = 2;
+
+        while (true) {
+            if (isPrime(x)) {
+                if (factors[x]) {
+                    factors[x]++;
+                }
+                else {
+                    factors[x] = 1;
+                }
+
+                break;
+            }
+
+            if (isPrime(i) && (x / i) % 1 === 0) {
+                x /= i;
+                if (factors[i]) {
+                    factors[i]++;
+                }
+                else {
+                    factors[i] = 1;
+                }
+
+                i = 1;
+            }
+
+            i++;
+        }
+
+        return factors;
+    }
+
+    function isDistinct(factors) {
+        for (var item in consecutive) {
+            for (var key in item) {
+                if (item.hasOwnProperty(key)) {
+                    if (factors[key] && factors[key] === item[key]) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    while (consecutive.length < 4) {
+        var factors = primeFactors(i);
+
+        if (Object.keys(factors).length === 4) {
+            if (consecutive > 0 && !isDistinct(factors)) {
+                consecutive = [];
+                first = 0;
+            }
+            if (first === 0) first = i;
+            consecutive.push(factors);
+        }
+        else {
+            consecutive = [];
+            first = 0;
+        }
+
+        i++;
+    }
+
+    return first;
+}
+
+console.log("Result: " + euler47() + "\nTotal Time: " + (new Date() - start) + " ms");
