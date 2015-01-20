@@ -1675,4 +1675,16 @@ function euler47() {
     return first;
 }
 
-console.log("Result: " + euler47() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler48() {
+    var max = 1000,
+        sum = 0;
+
+    for (var i = 1; i <= max; i++) {
+        var tmp = bigint(i).pow(i).toString();
+        sum = bigint(sum).add(tmp).toString();
+    }
+
+    return sum.slice(-10);
+}
+
+console.log("Result: " + euler48() + "\nTotal Time: " + (new Date() - start) + " ms");
