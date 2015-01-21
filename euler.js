@@ -1687,4 +1687,86 @@ function euler48() {
     return sum.slice(-10);
 }
 
-console.log("Result: " + euler48() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler49() {
+    var max = 10000,
+        primes = eratosthenes(max),
+        result = [];
+
+    // sieve of Eratosthenes
+    function eratosthenes(n) {
+        var list = [],
+            limit = Math.sqrt(n),
+            primes = [];
+
+        for (var i = 0; i < n; i++) {
+            list.push(true);
+        }
+
+        for (var i = 2; i <= limit; i++) {
+            if (list[i]) {
+                for (var j = i * i; j < n; j += i) {
+                    list[j] = false;
+                }
+            }
+        }
+
+        for (var i = 2; i < n; i++) {
+            if (list[i]) {
+                primes.push(i);
+            }
+        }
+
+        return primes;
+    }
+
+    function isPermutation(a, b) {
+        var A = a.toString().split(''),
+            B = b.toString().split('');
+
+        if (a === b || A.length !== B.length) {
+            return false;
+        }
+
+        var list = {};
+        for (var i = 0; i < A.length; i++) {
+            if (list[A[i]]) {
+                list[A[i]]++;
+            }
+            else {
+                list[A[i]] = 1;
+            }
+        }
+
+        for (var i = 0; i < B.length; i++) {
+            if (list[B[i]] && list[B[i]] > 0) {
+                list[B[i]]--;
+            }
+            else {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    for (var i = 0; i < primes.length; i++) {
+        if (primes[i].toString().length !== 4) {
+            continue;
+        }
+
+        for (var j = i+1; j < primes.length; j++) {
+            var k = primes[j] + (primes[j] - primes[i]);
+
+            if (k < max && primes.indexOf(k) !== -1) {
+                if (isPermutation(primes[i], primes[j]) && isPermutation(primes[j], k)) {
+                    result = '' + primes[i] + primes[j] + k;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+console.log("Result: " + euler49() + "\nTotal Time: " + (new Date() - start) + " ms");
