@@ -1769,4 +1769,60 @@ function euler49() {
     return result;
 }
 
-console.log("Result: " + euler49() + "\nTotal Time: " + (new Date() - start) + " ms");
+function euler50() {
+    var limit = 1000000,
+        primes = eratosthenes(limit),
+        sums = [0],
+        consecutive = 0,
+        consecutivePrime = 0;
+
+    // Sieve of Eratosthenes
+    function eratosthenes(n) {
+        var list = [],
+            limit = Math.sqrt(n),
+            primes = [];
+
+        for (var i = 0; i < n; i++) {
+            list.push(true);
+        }
+
+        for (var i = 2; i <= limit; i++) {
+            if (list[i]) {
+                for (var j = i * i; j < n; j += i) {
+                    list[j] = false;
+                }
+            }
+        }
+
+        for (var i = 2; i < n; i++) {
+            if (list[i]) {
+                primes.push(i);
+            }
+        }
+
+        return primes;
+    }
+
+    for (var i = 0; i < primes.length; i++) {
+        sums[i + 1] = sums[i] + primes[i];
+    }
+
+    for (var i = 0; i < primes.length; i++) {
+        for (var j = i - (consecutive + 1); j >= 0; j--) {
+            var sum = sums[i] - sums[j];
+
+            if (sum > limit) {
+                break;
+            }
+
+            if (primes.indexOf(sum) !== -1) {
+                consecutive = i - j;
+                consecutivePrime = sum;
+            }
+        }
+    }
+
+    return consecutivePrime;
+}
+
+console.log("Result: " + euler50() + "\nTotal Time: " + (new Date() - start) + " ms");
