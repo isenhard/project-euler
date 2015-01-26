@@ -16,14 +16,17 @@ process.argv.forEach(function (val, index, array) {
 
     if (index == 2) {
         var func = 'euler' + val;
+        var result = null;
 
         if (problems1_50.hasOwnProperty(func)) {
-            console.log('Solving euler:', val);
-            console.log('Result:       ', problems1_50[func]());
-            console.log('Total Time:   ', new Date() - start, 'ms');
+            result = problems1_50[func]();
         }
         else {
             console.log('There was a problem with the argument...');
         }
+
+        console.log('Solving euler:', val);
+        console.log('Result:       ', result);
+        console.log('Total Time:   ', new Date() - start, 'ms');
     }
 });
