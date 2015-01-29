@@ -56,6 +56,40 @@ problems.euler52 = function() {
     }
 
     return result;
-}
+};
+
+problems.euler53 = function() {
+    var min = 1,
+        max = 100,
+        result = 0;
+
+    function factorial(n) {
+        var sum = 1;
+
+        for (var i = 2; i <= n; i++) {
+            sum *= i;
+        }
+
+        return sum;
+    }
+
+    function C(n, r) {
+        if (r > n) return 0;
+
+        return factorial(n) / (factorial(r) * factorial(n-r));
+    }
+
+    for (var n = min; n <= max; n++) {
+        for (var r = 1; r < n; r++) {
+            var val = C(n, r);
+
+            if (val > 1000000) {
+                result++;
+            }
+        }
+    }
+
+    return result;
+};
 
 module.exports = problems;
