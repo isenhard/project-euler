@@ -92,4 +92,28 @@ problems.euler53 = function() {
     return result;
 };
 
+problems.euler55 = function() {
+    var max = 9999,
+        nonLychrelNumbers = 0;
+
+    function reverseInt(i) {
+        return parseInt(i.toString().split('').reverse().join(''));
+    }
+
+    for (var i = 1; i <= max; i++) {
+        var sum = i;
+
+        for (var j = 1; j < 50; j++) {
+            sum = sum + reverseInt(sum);
+
+            if (sum === reverseInt(sum)) {
+                nonLychrelNumbers++;
+                break;
+            }
+        }
+    }
+
+    return max - nonLychrelNumbers;
+};
+
 module.exports = problems;
