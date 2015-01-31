@@ -27,13 +27,14 @@ problems.euler2 = function() {
 }
 
 problems.euler3 = function(n) {
-    if(!n) {
+    if (!n) {
         var n = 600851475143;
     }
+
     var max = Math.round(Math.sqrt(n));
 
     for(var i=max; i>1; i--) {
-        if(n%i == 0 && !euler3(i)) {
+        if(n%i == 0 && !problems.euler3(i)) {
             return i;
         }
     }
