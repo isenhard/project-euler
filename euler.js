@@ -1,8 +1,7 @@
-var start          = +new Date();
-var bigint         = require('./BigInteger');
-var test           = require('./test');
-var problems1_50   = require('./problems1_50');
-var problems50_100 = require('./problems50_100');
+var start    = +new Date();
+var bigint   = require('./BigInteger');
+var test     = require('./test');
+var problems = require('./problems');
 
 process.argv.forEach(function (val, index, array) {
     if (array.length > 3) {
@@ -24,11 +23,11 @@ process.argv.forEach(function (val, index, array) {
             test();
         }
         else {
-            if (val >= 1 && val <= 50 && problems1_50.hasOwnProperty(func)) {
-                result = problems1_50[func]();
+            if (val >= 1 && val <= 50 && problems['1_50'].hasOwnProperty(func)) {
+                result = problems['1_50'][func]();
             }
-            else if (val >= 51 && val <= 100 && problems50_100.hasOwnProperty(func)) {
-                result = problems50_100[func]();
+            else if (val >= 51 && val <= 100 && problems['51_100'].hasOwnProperty(func)) {
+                result = problems['51_100'][func]();
             }
             else {
                 console.log('There was a problem with the argument...');
