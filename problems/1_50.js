@@ -1,3 +1,4 @@
+var bigint   = require('../BigInteger');
 var problems = {};
 
 problems.euler1 = function() {

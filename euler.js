@@ -1,5 +1,4 @@
 var start    = +new Date();
-var bigint   = require('./BigInteger');
 var test     = require('./test');
 var problems = require('./problems');
 
