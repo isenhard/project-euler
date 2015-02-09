@@ -1,3 +1,4 @@
+var bigint   = require('../BigInteger');
 var problems = {};
 
 problems.euler52 = function() {
@@ -114,6 +115,35 @@ problems.euler55 = function() {
     }
 
     return max - nonLychrelNumbers;
+};
+
+problems.euler56 = function() {
+    var max = 100,
+        result = 0;
+
+    function sumOfDigits(digits) {
+        var digitsList = digits.toString().split('');
+        var sum = 0;
+
+        for (var i = 0; i < digitsList.length; i++) {
+            sum += parseInt(digitsList[i]);
+        }
+
+        return sum;
+    }
+
+    for (var a = max - 1; a > 0; a--) {
+        for (var b = max - 1; b > 0; b--) {
+            var num = bigint(a).pow(b).toString();
+
+            var sum = sumOfDigits(num);
+            if (sum > result) {
+                result = sum;
+            }
+        }
+    }
+
+    return result;
 };
 
 module.exports = problems;
