@@ -615,11 +615,11 @@ problems.euler22 = function() {
 }
 
 problems.euler23 = function() {
-    var LIMIT = 28123,
+    var limit = 28123,
         abundantNumbers = [],
-        listofsums = [];
+        canBeAbundantNumber = {};
 
-    function isAbundant(n) {
+    function sumOfFactors(n) {
         var sum = 0;
 
         for (var i = 0; i <= n/2+1; i++) {
@@ -628,10 +628,14 @@ problems.euler23 = function() {
             }
         }
 
-        return sum > n;
+        return sum;
     }
 
-    for (var i = 2; i <= LIMIT; i++) {
+    function isAbundant(n) {
+        return sumOfFactors(n) > n;
+    }
+
+    for (var i = 2; i <= limit; i++) {
         if (isAbundant(i)) {
             abundantNumbers.push(i);
         }
@@ -639,8 +643,8 @@ problems.euler23 = function() {
 
     for (var i = 0; i < abundantNumbers.length; i++) {
         for (var j = i; j < abundantNumbers.length; j++) {
-            if (abundantNumbers[i] + abundantNumbers[j] <= LIMIT) {
-                listofsums.push(abundantNumbers[i] + abundantNumbers[j]);
+            if (abundantNumbers[i] + abundantNumbers[j] <= limit) {
+                canBeAbundantNumber[abundantNumbers[i] + abundantNumbers[j]] = true;
             }
             else {
                 break;
@@ -649,8 +653,8 @@ problems.euler23 = function() {
     }
 
     var sum = 0;
-    for (var i = 1; i <= LIMIT; i++) {
-        if (listofsums.indexOf(i) === -1) {
+    for (var i = 1; i <= limit; i++) {
+        if (!canBeAbundantNumber[i]) {
             sum += i;
         }
     }
