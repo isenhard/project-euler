@@ -1,4 +1,5 @@
 var bigint   = require('../BigInteger');
+var helpers  = require('../helpers');
 var problems = {};
 
 problems.euler1 = function() {
@@ -995,34 +996,7 @@ problems.euler34 = function() {
 
 problems.euler35 = function() {
     var limit = 1000000,
-        primes = eratosthenes(limit);
-
-    // sieve of Eratosthenes
-    function eratosthenes(n) {
-        var list = [],
-            limit = Math.sqrt(n),
-            primes = [];
-
-        for (var i = 0; i < n; i++) {
-            list.push(true);
-        }
-
-        for (var i = 2; i <= limit; i++) {
-            if (list[i]) {
-                for (var j = i * i; j < n; j += i) {
-                    list[j] = false;
-                }
-            }
-        }
-
-        for (var i = 2; i < n; i++) {
-            if (list[i]) {
-                primes.push(i);
-            }
-        }
-
-        return primes;
-    }
+        primes = helpers.eratosthenes(limit);
 
     function isCircularPrime(n) {
         var nArray = n.toString().split('');
@@ -1074,36 +1048,9 @@ problems.euler36 = function() {
 
 problems.euler37 = function() {
     var limit = 1000000,
-        primes = eratosthenes(limit),
+        primes = helpers.eratosthenes(limit),
         truncatablePrimes = 0,
         sum = 0;
-
-    // sieve of Eratosthenes
-    function eratosthenes(n) {
-        var list = [],
-            limit = Math.sqrt(n),
-            primes = [];
-
-        for (var i = 0; i < n; i++) {
-            list.push(true);
-        }
-
-        for (var i = 2; i <= limit; i++) {
-            if (list[i]) {
-                for (var j = i * i; j < n; j += i) {
-                    list[j] = false;
-                }
-            }
-        }
-
-        for (var i = 2; i < n; i++) {
-            if (list[i]) {
-                primes.push(i);
-            }
-        }
-
-        return primes;
-    }
 
     for (var i = 0; i < primes.length; i++) {
         var array = primes[i].toString().split('');
@@ -1243,33 +1190,6 @@ problems.euler41 = function() {
         return digits.length === string.length;
     }
 
-    // sieve of Eratosthenes
-    function eratosthenes(n) {
-        var list = [],
-            limit = Math.sqrt(n),
-            primes = [];
-
-        for (var i = 0; i < n; i++) {
-            list.push(true);
-        }
-
-        for (var i = 2; i <= limit; i++) {
-            if (list[i]) {
-                for (var j = i * i; j < n; j += i) {
-                    list[j] = false;
-                }
-            }
-        }
-
-        for (var i = 2; i < n; i++) {
-            if (list[i]) {
-                primes.push(i);
-            }
-        }
-
-        return primes;
-    }
-
     // find biggest pandigital number not divisible by 3
     while (numbers.length > 1) {
         var sum = 0;
@@ -1280,7 +1200,7 @@ problems.euler41 = function() {
 
         if ((sum / 3) % 1 != 0) {
             var num = parseInt(numbers.reverse().join(''));
-            primes = eratosthenes(num);
+            primes = helpers.eratosthenes(num);
             break;
         }
 
@@ -1613,35 +1533,8 @@ problems.euler48 = function() {
 
 problems.euler49 = function() {
     var max = 10000,
-        primes = eratosthenes(max),
+        primes = helpers.eratosthenes(max),
         result = [];
-
-    // sieve of Eratosthenes
-    function eratosthenes(n) {
-        var list = [],
-            limit = Math.sqrt(n),
-            primes = [];
-
-        for (var i = 0; i < n; i++) {
-            list.push(true);
-        }
-
-        for (var i = 2; i <= limit; i++) {
-            if (list[i]) {
-                for (var j = i * i; j < n; j += i) {
-                    list[j] = false;
-                }
-            }
-        }
-
-        for (var i = 2; i < n; i++) {
-            if (list[i]) {
-                primes.push(i);
-            }
-        }
-
-        return primes;
-    }
 
     function isPermutation(a, b) {
         var A = a.toString().split(''),
@@ -1695,37 +1588,10 @@ problems.euler49 = function() {
 
 problems.euler50 = function() {
     var limit = 1000000,
-        primes = eratosthenes(limit),
+        primes = helpers.eratosthenes(limit),
         sums = [0],
         consecutive = 0,
         consecutivePrime = 0;
-
-    // Sieve of Eratosthenes
-    function eratosthenes(n) {
-        var list = [],
-            limit = Math.sqrt(n),
-            primes = [];
-
-        for (var i = 0; i < n; i++) {
-            list.push(true);
-        }
-
-        for (var i = 2; i <= limit; i++) {
-            if (list[i]) {
-                for (var j = i * i; j < n; j += i) {
-                    list[j] = false;
-                }
-            }
-        }
-
-        for (var i = 2; i < n; i++) {
-            if (list[i]) {
-                primes.push(i);
-            }
-        }
-
-        return primes;
-    }
 
     for (var i = 0; i < primes.length; i++) {
         sums[i + 1] = sums[i] + primes[i];
