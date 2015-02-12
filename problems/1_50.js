@@ -1536,37 +1536,6 @@ problems.euler49 = function() {
         primes = helpers.eratosthenes(max),
         result = [];
 
-    function isPermutation(a, b) {
-        var A = a.toString().split(''),
-            B = b.toString().split('');
-
-        if (a === b || A.length !== B.length) {
-            return false;
-        }
-
-        var list = {};
-        for (var i = 0; i < A.length; i++) {
-            if (list[A[i]]) {
-                list[A[i]]++;
-            }
-            else {
-                list[A[i]] = 1;
-            }
-        }
-
-        for (var i = 0; i < B.length; i++) {
-            if (list[B[i]] && list[B[i]] > 0) {
-                list[B[i]]--;
-            }
-            else {
-                return false;
-            }
-        }
-
-        return true;
-
-    }
-
     for (var i = 0; i < primes.length; i++) {
         if (primes[i].toString().length !== 4) {
             continue;
@@ -1576,7 +1545,7 @@ problems.euler49 = function() {
             var k = primes[j] + (primes[j] - primes[i]);
 
             if (k < max && primes.indexOf(k) !== -1) {
-                if (isPermutation(primes[i], primes[j]) && isPermutation(primes[j], k)) {
+                if (helpers.isPermutation(primes[i], primes[j]) && helpers.isPermutation(primes[j], k)) {
                     result = '' + primes[i] + primes[j] + k;
                 }
             }
