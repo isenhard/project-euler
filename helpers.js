@@ -57,4 +57,14 @@ helpers.isPermutation = function(a, b) {
     return true;
 }
 
+helpers.factorial = function(n) {
+    var sum = 1;
+
+    for (var i = 2; i <= n; i++) {
+        sum *= i;
+    }
+
+    return sum;
+}
+
 module.exports = helpers;

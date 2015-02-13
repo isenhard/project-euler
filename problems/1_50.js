@@ -669,18 +669,8 @@ problems.euler24 = function() {
     var result = [];
     var start = 0;
 
-    function factorial(n) {
-        var sum = 1;
-
-        for (var i = 2; i <= n; i++) {
-            sum *= i;
-        }
-
-        return sum;
-    }
-
     for (var i = numbers.length - 1; i > 0; i--) {
-        var factor = factorial(i);
+        var factor = helpers.factorial(i);
 
         var j = 0;
         while (numbers.length) {
@@ -964,17 +954,7 @@ problems.euler33 = function() {
 problems.euler34 = function() {
     var result = 0,
         start = 3,
-        end = factorial(9) * 7;
-
-    function factorial(n) {
-        var sum = 1;
-
-        for (var i = 2; i <= n; i++) {
-            sum *= i;
-        }
-
-        return sum;
-    }
+        end = helpers.factorial(9) * 7;
 
     for (var i = start; i <= end; i++) {
         var sum = 0,
@@ -983,7 +963,7 @@ problems.euler34 = function() {
         while (n > 0) {
             var digit = n % 10;
             n = parseInt(n / 10);
-            sum += factorial(digit);
+            sum += helpers.factorial(digit);
         }
 
         if (sum === i) {

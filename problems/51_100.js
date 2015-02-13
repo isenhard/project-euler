@@ -34,20 +34,10 @@ problems.euler53 = function() {
         max = 100,
         result = 0;
 
-    function factorial(n) {
-        var sum = 1;
-
-        for (var i = 2; i <= n; i++) {
-            sum *= i;
-        }
-
-        return sum;
-    }
-
     function C(n, r) {
         if (r > n) return 0;
 
-        return factorial(n) / (factorial(r) * factorial(n-r));
+        return helpers.factorial(n) / (helpers.factorial(r) * helpers.factorial(n-r));
     }
 
     for (var n = min; n <= max; n++) {
