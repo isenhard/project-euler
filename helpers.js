@@ -67,4 +67,20 @@ helpers.factorial = function(n) {
     return sum;
 }
 
+// is number a prime number
+// returns bool
+helpers.isPrime = function(n) {
+    if (n < 2 || n % 1) return false;
+
+    var sqrt = Math.sqrt(n);
+
+    for (var i = 2; i <= sqrt; i++) {
+        if(n % i == 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 module.exports = helpers;

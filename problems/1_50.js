@@ -99,21 +99,8 @@ problems.euler7 = function() {
         num = 0,
         prime = 0;
 
-    function isPrime(n) {
-        if(n<2) {
-            return false;
-        }
-
-        for (var i=2; i<n; i++) {
-            if(n%i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     while(index != end) {
-        if(isPrime(num)) {
+        if(helpers.isPrime(num)) {
             index++;
             prime = num;
         }
@@ -163,19 +150,8 @@ problems.euler10 = function() {
     var max = 2e6,
         sum = 0;
 
-    function isPrime(n) {
-        var sqrt = Math.sqrt(n);
-
-        for (var i=2; i<=sqrt; i++) {
-            if(n%i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    for(i=2; i<max; i++) {
-        if(isPrime(i)) {
+    for(var i = 2; i < max; i++) {
+        if(helpers.isPrime(i)) {
             sum += i;
         }
     }
@@ -734,22 +710,11 @@ problems.euler27 = function() {
         maxB = 1000,
         result = {'n': 0, 'a': 0, 'b': 0};
 
-    function isPrime(n) {
-        var sqrt = Math.sqrt(n);
-
-        for (var i=2; i<=sqrt; i++) {
-            if(n%i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     for (var a = -maxA; a <= maxA; a++) {
         for (var b = -maxB; b <= maxB; b++) {
             var n = 0;
 
-            while (isPrime(Math.abs(n*n + a*n + b))) {
+            while (helpers.isPrime(Math.abs(n*n + a*n + b))) {
                 n++;
             }
 
@@ -1365,24 +1330,12 @@ problems.euler46 = function() {
     var i = 33,
         result;
 
-    function isPrime(n) {
-        var sqrt = Math.sqrt(n);
-
-        for (var i=2; i<=sqrt; i++) {
-            if(n%i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     function conjecture(n) {
         var twiceSquare = 2, // 2 * Math.pow(1, 2)
             j = 1;
 
         while (twiceSquare < n) {
-            if (isPrime(n - twiceSquare)) {
+            if (helpers.isPrime(n - twiceSquare)) {
                 return true;
             }
 
@@ -1394,7 +1347,7 @@ problems.euler46 = function() {
     }
 
     while (!result) {
-        if (isPrime(i)) {
+        if (helpers.isPrime(i)) {
             i += 2;
             continue;
         }
@@ -1414,27 +1367,13 @@ problems.euler47 = function() {
         first = 0,
         i = 2;
 
-    function isPrime(n) {
-        var sqrt = Math.sqrt(n);
-
-        if (n % 1) return false;
-
-        for (var i=2; i<=sqrt; i++) {
-            if(n%i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     function primeFactors(n) {
         var factors = {},
             x = n,
             i = 2;
 
         while (true) {
-            if (isPrime(x)) {
+            if (helpers.isPrime(x)) {
                 if (factors[x]) {
                     factors[x]++;
                 }
@@ -1445,7 +1384,7 @@ problems.euler47 = function() {
                 break;
             }
 
-            if (isPrime(i) && (x / i) % 1 === 0) {
+            if (helpers.isPrime(i) && (x / i) % 1 === 0) {
                 x /= i;
                 if (factors[i]) {
                     factors[i]++;
