@@ -231,31 +231,7 @@ problems.euler12 = function() {
         return sum;
     }
 
-    function divisors(n) {
-        var list = [],
-            i = 1,
-            max = n; // ?
-
-        if(n == 1) {
-            return 1;
-        }
-
-        while(i <= max) {
-            if(n%i == 0) {
-                list.push(i);
-
-                if(i != n/i) {
-                    list.push(n/i);
-                }
-                max = n/i;
-            }
-            i++;
-        }
-
-        return list.length;
-    }
-
-    while(divisors(triangleNum(i)) < max) {
+    while(helpers.numberOfDivisors(triangleNum(i)) < max) {
         i++;
     }
 

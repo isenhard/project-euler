@@ -83,4 +83,28 @@ helpers.isPrime = function(n) {
     return true;
 }
 
+helpers.numberOfDivisors = function(n) {
+    var list = [],
+        i = 1,
+        max = n; // ?
+
+    if(n == 1) {
+        return 1;
+    }
+
+    while(i <= max) {
+        if(n%i == 0) {
+            list.push(i);
+
+            if(i != n/i) {
+                list.push(n/i);
+            }
+            max = n/i;
+        }
+        i++;
+    }
+
+    return list.length;
+}
+
 module.exports = helpers;
