@@ -107,4 +107,24 @@ helpers.numberOfDivisors = function(n) {
     return list.length;
 }
 
+// Check if integer is a pandigital
+// Returns a boolean
+helpers.isPandigital = function(n) {
+    var string = n.toString().split(''),
+        digits = [];
+
+    if (string.indexOf('0') !== -1) {
+        return false;
+    }
+
+    for (var i = 0; i < string.length; i++) {
+        var digit = string[i];
+        if (digits.indexOf(digit) === -1 && digit <= string.length) {
+            digits.push(digit);
+        }
+    }
+
+    return digits.length === string.length;
+}
+
 module.exports = helpers;

@@ -808,24 +808,6 @@ problems.euler32 = function() {
         products = [],
         product, stringed;
 
-    function isPandigital(n) {
-        var string = n.toString().split(''),
-            digits = [];
-
-        if (string.indexOf('0') !== -1) {
-            return false;
-        }
-
-        for (var i = 0; i < string.length; i++) {
-            var digit = string[i];
-            if (digits.indexOf(digit) === -1) {
-                digits.push(digit);
-            }
-        }
-
-        return digits.length === string.length;
-    }
-
     for (var i = 2; i < 100; i++) {
         var nBegin = (i > 9) ? 123 : 1234,
             nEnd = 10000 / i;
@@ -834,7 +816,7 @@ problems.euler32 = function() {
             product = i * n;
             stringed = product.toString() + n.toString() + i.toString();
 
-            if (isPandigital(stringed) && products.indexOf(product) === -1) {
+            if (helpers.isPandigital(stringed) && products.indexOf(product) === -1) {
                 products.push(product);
             }
         }
@@ -1010,28 +992,10 @@ problems.euler37 = function() {
 problems.euler38 = function() {
     var largest = '';
 
-    function isPandigital(n) {
-        var string = n.toString().split(''),
-            digits = [];
-
-        if (string.indexOf('0') !== -1) {
-            return false;
-        }
-
-        for (var i = 0; i < string.length; i++) {
-            var digit = string[i];
-            if (digits.indexOf(digit) === -1) {
-                digits.push(digit);
-            }
-        }
-
-        return digits.length === string.length;
-    }
-
     for (var i = 9876; i > 0; i--) {
         largest = '' + i + (i * 2);
 
-        if (isPandigital(largest)) {
+        if (helpers.isPandigital(largest)) {
             break;
         }
     }
@@ -1093,24 +1057,6 @@ problems.euler41 = function() {
         primes = [],
         prime = 0;
 
-    function isPandigital(n) {
-        var string = n.toString().split(''),
-            digits = [];
-
-        if (string.indexOf('0') !== -1) {
-            return false;
-        }
-
-        for (var i = 0; i < string.length; i++) {
-            var digit = string[i];
-            if (digits.indexOf(digit) === -1 && digit <= string.length) {
-                digits.push(digit);
-            }
-        }
-
-        return digits.length === string.length;
-    }
-
     // find biggest pandigital number not divisible by 3
     while (numbers.length > 1) {
         var sum = 0;
@@ -1130,7 +1076,7 @@ problems.euler41 = function() {
 
     // find the biggest pandigital prime
     for (var i = primes.length - 1; i >= 0; i--) {
-        if (isPandigital(primes[i])) {
+        if (helpers.isPandigital(primes[i])) {
             prime = primes[i];
             break;
         }
