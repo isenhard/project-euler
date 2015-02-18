@@ -106,4 +106,39 @@ problems.euler56 = function() {
     return result;
 };
 
+problems.euler58 = function() {
+    // Nuber of primes in the spiral
+    var primes = 3;
+
+    // Last corner in spiral
+    var corner = 9;
+
+    // This will be -1 the actual side length,
+    // as length between the corners will be lenght-1
+    var sideLength = 2;
+
+    // check the ratio of primes
+    while (primes / (2 * sideLength + 1) > 0.10) {
+        // increase side length
+        sideLength += 2;
+
+        // check all corners, except the bottom right (this will never be a prime)
+        for (var i = 0; i <= 2; i++) {
+            // move the corner
+            corner += sideLength;
+
+            // check if it is a prime
+            if (helpers.isPrime(corner)) {
+                primes++;
+            }
+        }
+
+        // set corner to bottom right
+        corner += sideLength;
+    }
+
+    // return side lenght (plus the 1 we removed at the beginning)
+    return sideLength + 1;
+};
+
 module.exports = problems;
