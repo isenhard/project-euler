@@ -106,6 +106,26 @@ problems.euler56 = function() {
     return result;
 };
 
+problems.euler57 = function() {
+    var numerator = 1,
+        denominator = 1,
+        result = 0;
+
+    for (var i = 0; i <= 1000; i++) {
+        var n = bigint(denominator).multiply(2).add(numerator);
+        var d = bigint(denominator).add(numerator);
+
+        numerator = n;
+        denominator = d;
+
+        if (n.toString().length > d.toString().length) {
+            result++;
+        }
+    };
+
+    return result;
+};
+
 problems.euler58 = function() {
     // Nuber of primes in the spiral
     var primes = 3;
