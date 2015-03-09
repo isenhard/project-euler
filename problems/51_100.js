@@ -161,4 +161,20 @@ problems.euler58 = function() {
     return sideLength + 1;
 };
 
+problems.euler63 = function() {
+    var result = 0;
+
+    for (var i = 1; i < 25; i++) {
+        for (var j = 1; j < 100; j++) {
+            var n = bigint(j).pow(i);
+
+            if (n.toString().length === i) {
+                result++;
+            }
+        }
+    }
+
+    return result;
+};
+
 module.exports = problems;
